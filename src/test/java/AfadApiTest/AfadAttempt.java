@@ -2,12 +2,12 @@ package AfadApiTest;
 
 import Utilities.Helper.Helper;
 import io.restassured.response.Response;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
 public class AfadAttempt {
-
     @Test
 
     public void afadGETTest(){
