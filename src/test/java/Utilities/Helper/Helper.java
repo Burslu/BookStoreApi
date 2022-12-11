@@ -1,9 +1,13 @@
 package Utilities.Helper;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -176,6 +180,19 @@ public class Helper {
                         .log()
                         .all()
                         .extract().response();
+    }
+
+    protected ExtentReports extent;
+    @BeforeTest
+    public void setUp(){
+        ExtentSparkReporter spark = new ExtentSparkReporter("reports/spark.html");
+        extent = new ExtentReports();
+        extent.attachReporter(spark);
+    }
+
+    @AfterTest
+    public void tearDown(){
+        extent.flush();
     }
 
 }
